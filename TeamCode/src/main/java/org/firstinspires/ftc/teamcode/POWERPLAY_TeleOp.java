@@ -160,6 +160,23 @@ public class POWERPLAY_TeleOp extends OpMode {
         telemetry.addData("Claw", "Open");
     }
 
+        //NEW PATCH
+        //This should send the arm to a specific spot in order to be able to get the claw in a position to pick up a cone.
+        if (gamepad2.x) {
+            robot.slide.setDirection(DcMotor.Direction.FORWARD); 
+            robot.slide.setPower(0.02);
+            
+            robot.slide.setTargetPosition(robot.slide.getCurrentPosition + 50);
+            robot.slide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.slide.setPower(0.75);
+
+            while (opModeIsActive() && robot.isWheelsBusy()) {
+                    robot.tellMotorOutput();
+            }
+
+            robot.slide.setPower(0.1);
+            robot.slide.setMode(DcMotor.RunMode.(RUN_USING_ENCODER);
+        } 
 
 
     }
